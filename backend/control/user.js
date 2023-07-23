@@ -1,7 +1,8 @@
 const { registerUserSchema } = require('../validations/userSchemas');
-const { selectUser } = require('../databases');
-const db = require('../databases');
-const bcrypt = require('bcrypt')
+const { selectUser, selectUserId } = require('../database');
+const db = require('../database');
+const bcrypt = require('bcrypt');
+const decodedToken = require('../token');
 
 const createUser = async (req, res) => {
 
@@ -32,7 +33,19 @@ const createUser = async (req, res) => {
 
 const listUser = async (req, res) => {
     try {
-        return res.status(200).send("Ok")
+    
+        const user = await decodedToken(req.headers.authorization);
+        if (user === null){
+            return res.status(400).json("Usuário não logado, por favor faça login ou insira o token corretamente");
+        }
+  
+        const userData = await selectUserId(user.id);
+
+        return res.status(200).send({
+            nome: userData.nome,
+            email: userData.email,
+            id: userData.id
+        })
     }catch(error){
         return res.status(500).json(error.message);
     }
@@ -40,5 +53,6 @@ const listUser = async (req, res) => {
 
 
 module.exports = {
-    createUser
+    createUser,
+    listUser
 }

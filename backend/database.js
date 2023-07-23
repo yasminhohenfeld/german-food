@@ -24,8 +24,19 @@ const selectUser = async (email) => {
     return results.rows[0];
 }
 
+const selectUserId = async (id) => {
+    const sqlSelect = 'select email, senha, nome, id from public.usuario where id=$1'
+    const paramsSelect = [id]
+    const results = await query(sqlSelect, paramsSelect)
+
+    if (results.rowCount === 0){
+        return null
+    }
+    return results.rows[0];
+}
 
 module.exports = {
     query,
-    selectUser
+    selectUser,
+    selectUserId
 }

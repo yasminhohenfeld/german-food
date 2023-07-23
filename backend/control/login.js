@@ -1,5 +1,5 @@
 const { loginSchema } = require('../validations/loginSchemas');
-const { selectUser } = require('../databases');
+const { selectUser } = require('../database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
