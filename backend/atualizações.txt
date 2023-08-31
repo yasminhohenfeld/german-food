@@ -3,4 +3,4 @@
 - Criar rota de editar usuário (put)
 - Criar rota de deletar usuário (delete) (Ok)
 - Criar rota de listar comida (get)
-- Arrumar o caso da pessoa colocar o token errado 
+- Arrumar o caso da pessoa colocar o token errado que não está retornando nada 
