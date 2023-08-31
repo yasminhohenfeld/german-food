@@ -1,5 +1,5 @@
 const { registerUserSchema } = require('../validations/userSchemas');
-const { selectUser, selectUserId } = require('../database');
+const { selectUser, selectUserId, deleteUserdb } = require('../database');
 const db = require('../database');
 const bcrypt = require('bcrypt');
 const decodedToken = require('../token');
@@ -38,8 +38,11 @@ const listUser = async (req, res) => {
         if (user === null){
             return res.status(400).json("Usuário não logado, por favor faça login ou insira o token corretamente");
         }
-  
+        
+        console.log (user);
         const userData = await selectUserId(user.id);
+
+
 
         return res.status(200).send({
             nome: userData.nome,
@@ -51,8 +54,30 @@ const listUser = async (req, res) => {
     }
 }
 
+const deleteUser = async (req, res) => {
+
+    try{
+        const user = await decodedToken(req.headers.authorization);
+        if (user === null){
+            return res.status(400).json("Usuário não logado, por favor faça login ou insira o token corretamente");
+        }
+
+        const deletedUser = await deleteUserdb(user.id);
+
+        if(deletedUser === false){
+            return res.status(400).json("Parece que este usuário já foi deletado ou não encontra-se cadastrado no sistema. Confirme realizando um novo login")
+        }
+
+        return res.status(200).json("Usuário deletado com sucesso");
+
+    }catch(error){
+        return res.status(500).json(error.message);
+    }
+}
+
 
 module.exports = {
     createUser,
-    listUser
+    listUser,
+    deleteUser
 }
