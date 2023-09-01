@@ -38,7 +38,7 @@ function Footer() {
                 <a style={style.color} href="#"><i className="bi bi-facebook"></i></a>
             </div>
             <div>
-                <a style={style.color} href="#"><i className="bi bi-instagram"></i></a>
+                <a style={style.color} href="https://www.instagram.com/"><i className="bi bi-instagram"></i></a>
             </div>
             <div>
                 <a style={style.color} href="#"><i className="bi bi-twitter"></i></a>
