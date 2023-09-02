@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import { Link } from 'react-router-dom';
 
 const style = {
     head: {
@@ -42,7 +43,7 @@ function Head() {
         </header>
         <nav style={style.navbar} class="container">
             <div class="row justify-content-center">
-                <a style={style.a}href="#">Cadastre-se</a>
+                <Link to="/cadastro" style={style.a}>Cadastre-se</Link> {/* Adicione este link */}
                 <a style={style.a}href="#">Clientes</a>
                 <a style={style.a}href="#">Cardápio</a>
                 <a style={style.a}href="#">Sobre nós</a>
