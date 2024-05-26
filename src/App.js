@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Head from './Components/Head';
 import Body from './Components/Body';
 import Footer from './Components/Footer';
-import SignUp from './Components/SignUp';
+import ContactForm from './Components/ContactForm';
 
 function App() {
   return (
